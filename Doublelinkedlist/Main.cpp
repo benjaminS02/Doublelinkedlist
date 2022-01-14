@@ -10,6 +10,7 @@ void main() {
 	Node* n2 = new Node(2);
 	Node* n3 = new Node(3);
 	Node* n4 = new Node(4);
+	Node* n5 = new Node(5);
 
 	DLL dll;
 
@@ -28,7 +29,7 @@ void main() {
 	//list.Search(&n4); //should be a false or -1 (error/invalid) 
 	dll.search(n3);
 	//list.Replace(&n3, nullptr); //should be a false or -1 (error/invalid) 
-	//dll.replace(n5, n4); //should be a false or -1 (error/invalid) 
+	dll.replace(n5, n4); //should be a false or -1 (error/invalid) 
 	dll.replace(n3, n4);
 	dll.display_forward();
 	dll.size();

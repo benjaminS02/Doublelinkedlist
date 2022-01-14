@@ -90,12 +90,16 @@ bool DLL::replace(Node* old, Node* new_) {
 	int e = search(old);
 	Node* s = nodeAt(e);
 	Node* g =new_;
-	while (n != s) {
-		n = n->getNext();
+
+	while (n != old) {
 		if (n == tail) {
 			return false;
 		}
+		n = n->getNext();	
+
 	}
+
+	
 	if (old == nullptr || new_ == nullptr) {
 		return false;
 	}
