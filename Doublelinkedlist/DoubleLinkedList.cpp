@@ -8,42 +8,33 @@ DLL::DLL() {
 	tail = nullptr;
 }
 bool DLL::add(Node* data, int pos) {
-	int positionc = 0;
-	while (positionc < pos) {
-		if (data == tail) {
-			return false;
-		}
-		positionc++;
+	if (data == nullptr) {
+		return false;
 	}
 	if (size() == 0) {
 		head = data;
 		tail = data;
 		data->setPrev(nullptr);
 		data->setNext(nullptr);
-	}
-	else if (pos == 0) {
-		data->setPrev(nullptr);
-		data->setNext(head);
-		head->setPrev(data);
-		data = head;
+		return true;
 	}else if (pos == size()) {
+		tail->setNext(data);
 		data->setNext(nullptr);
 		data->setPrev(tail);
-		tail->setNext(data);
-		data = tail;
+		tail=data;
+		return true;
+	}
+	else if (pos > size()) {
+		return false;
 	}
 	else {
-		Node* newN = head;
-		int positioncurrent = 0;
-		while (positioncurrent < pos) {
-			positioncurrent++;
-			newN = newN->getNext();
-		}
+		Node* newN = nodeAt(pos);
 		Node* newNprev = newN->getPrev();
 		data->setNext(newN);
 		data->setPrev(newNprev);
 		newNprev->setNext(data);
 		newN->setPrev(data);
+		return true;
 
 
 
@@ -52,7 +43,7 @@ bool DLL::add(Node* data, int pos) {
 }
 bool DLL::remove(int pos) {
 	Node* n=head;
-	int positioncurrent = 0;
+	int positioncurrent = 1;
 	while (positioncurrent < pos) {
 		if (n == tail) {
 			return false;
@@ -127,8 +118,8 @@ Node* DLL::nodeAt(int pos) {
 		if (n == tail) {
 			return nullptr;
 		}
-		positioncurrent++;
 		n = n->getNext();
+		positioncurrent++;
 
 	}
 	return n;
@@ -138,9 +129,10 @@ void DLL::display_forward() {
 	Node* n = head;
 	while (n != nullptr) {
 		cout << n->getData() << "<->";
-		n=n->getNext();
+		n = n->getNext();
+		
 	}
-
+	cout << endl;
 }
 void DLL::display_backwards() {
 	Node* n = tail;
@@ -148,6 +140,7 @@ void DLL::display_backwards() {
 		cout << n->getData() << "<->";
 		n = n->getPrev();
 	}
+	cout<< endl;
 
 }
 	
@@ -156,7 +149,7 @@ void DLL::display_backwards() {
 int DLL::size() { 
 	int count = 0;
 	Node* n = head;
-	while (head != nullptr)
+	while (n != nullptr)
 	{
 		count++;
 		n = n->getNext();
