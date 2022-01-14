@@ -14,10 +14,10 @@ void main() {
 	DLL dll;
 
 	dll.add(n0, 0);
-	//list.Add(&n1, 10); //should be a false or -1 (error/invalid) 
-	//list.Add(nullptr, 1); //should be a false or -1 (error/invalid) 
+	//dll.add(n1, 10); //should be a false or -1 (error/invalid) 
+	//dll.add(nullptr, 1); //should be a false or -1 (error/invalid) 
 	dll.add(n1, 1);
-	//list.Remove(3); //should be a false or -1 (error/invalid) 
+	//dll.remove(3); //should be a false or -1 (error/invalid) 
 	dll.add(n2, 2);
 	dll.display_forward();
 	dll.add(n3, 1);
@@ -28,7 +28,7 @@ void main() {
 	//list.Search(&n4); //should be a false or -1 (error/invalid) 
 	dll.search(n3);
 	//list.Replace(&n3, nullptr); //should be a false or -1 (error/invalid) 
-	//list.Replace(&n5, &n4); //should be a false or -1 (error/invalid) 
+	//dll.replace(n5, n4); //should be a false or -1 (error/invalid) 
 	dll.replace(n3, n4);
 	dll.display_forward();
 	dll.size();

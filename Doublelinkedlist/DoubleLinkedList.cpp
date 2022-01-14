@@ -10,7 +10,12 @@ DLL::DLL() {
 bool DLL::add(Node* data, int pos) {
 	if (data == nullptr) {
 		return false;
+	}if (pos > size()) {
+		return false;
 	}
+	
+
+
 	if (size() == 0) {
 		head = data;
 		tail = data;
@@ -51,18 +56,20 @@ bool DLL::add(Node* data, int pos) {
 	}
 }
 bool DLL::remove(int pos) {
-	Node* n=head;
+	Node* n;
+	n=head;
 	int positioncurrent = 0;
 	while (positioncurrent < pos) {
 		if (n == tail) {
 			return false;
 		}
-		positioncurrent++;
+		
 		n = n->getNext();
+		positioncurrent++;
 
 	}
 	
-	if (n == head) {
+	if (n== head) {
 		head=n->getNext();
 		head->setPrev(nullptr);
 	}if (n == tail) {
@@ -75,7 +82,7 @@ bool DLL::remove(int pos) {
 
 	}
 	
-	delete n;
+	delete(n);
 	return true;
 }
 bool DLL::replace(Node* old, Node* new_) {
