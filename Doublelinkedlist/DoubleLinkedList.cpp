@@ -28,7 +28,16 @@ bool DLL::add(Node* data, int pos) {
 		return false;
 	}
 	else {
-		Node* newN = nodeAt(pos);
+		Node* newN = head;
+		int positioncurrent = 0;
+		while (positioncurrent < pos) {
+			if (newN == tail) {
+				return false;
+			}
+			newN = newN->getNext();
+			positioncurrent++;
+
+		}
 		Node* newNprev = newN->getPrev();
 		data->setNext(newN);
 		data->setPrev(newNprev);
@@ -43,7 +52,7 @@ bool DLL::add(Node* data, int pos) {
 }
 bool DLL::remove(int pos) {
 	Node* n=head;
-	int positioncurrent = 1;
+	int positioncurrent = 0;
 	while (positioncurrent < pos) {
 		if (n == tail) {
 			return false;
@@ -71,29 +80,29 @@ bool DLL::remove(int pos) {
 }
 bool DLL::replace(Node* old, Node* new_) {
 	Node* n = head;
-	Node* e = old;
-	Node* g = new_;
-	while (n != e) {
+	int e = search(old);
+	Node* s = nodeAt(e);
+	Node* g =new_;
+	while (n != s) {
 		n = n->getNext();
 		if (n == tail) {
 			return false;
 		}
 	}
-	while (n != nullptr) {
-		n = n->getNext();
-		if (n == nullptr) {
-			return false;
-		}
+	if (old == nullptr || new_ == nullptr) {
+		return false;
 	}
-	e->getPrev()->setNext(g);
-	e->getNext()->setPrev(g);
-	g->setPrev(e->getPrev());
-	g->setNext(e->getNext());
+
+	
+
+
+		s->getPrev()->setNext(g);
+		s->getNext()->setPrev(g);
+		g->setPrev(s->getPrev());
+		g->setNext(s->getNext());
 	return true;
-
-
-
-
+	
+	
 	
 
 
@@ -106,6 +115,7 @@ int DLL::search(Node* data) {
 			return -1;
 		}
 		n = n->getNext();
+		pos++;
 
 	}
 	return pos;
